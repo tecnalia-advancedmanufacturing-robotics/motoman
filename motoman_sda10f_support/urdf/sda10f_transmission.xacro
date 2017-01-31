@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="sda10f_transmission">
+
+        <xacro:include filename="$(find motoman_sda10f_support)/urdf/common_torso_transmission.xacro" />
+        <xacro:include filename="$(find motoman_sda10f_support)/urdf/arm_transmission.xacro" />
+
+        <xacro:torso_transmission prefix="torso_"/>
+
+        <xacro:motoman_arm_transmission prefix="arm_left_"/>
+
+        <xacro:motoman_arm_transmission  prefix="arm_right_"/>
+
+</robot>
