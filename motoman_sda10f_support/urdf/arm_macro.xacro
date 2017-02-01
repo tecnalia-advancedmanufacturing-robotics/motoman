@@ -1,6 +1,16 @@
 <?xml version="1.0" ?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
-	<xacro:macro name="motoman_arm" params="name prefix parent *origin reflect">
+	<xacro:macro name="motoman_arm" params="name prefix parent *origin reflect 
+		joint_limited
+		link_1_s_lower_limit:=${-pi}  link_1_s_upper_limit:=${pi}
+        link_2_l_lower_limit:=${-pi}  link_2_l_upper_limit:=${pi}
+        link_3_e_lower_limit:=${-pi}  link_3_e_upper_limit:=${pi}
+        link_4_u_lower_limit:=${-pi}  link_4_u_upper_limit:=${pi}
+        link_5_r_lower_limit:=${-pi}  link_5_r_upper_limit:=${pi}
+        link_6_b_lower_limit:=${-pi}  link_6_b_upper_limit:=${pi}
+        link_7_t_lower_limit:=${-pi}  link_7_t_upper_limit:=${pi}
+        ">
+
 		<link name="${prefix}link_1_s">
 			<visual>
 				<origin rpy="0 0 0" xyz="0 0 0"/>
@@ -18,6 +28,12 @@
 				</geometry>
 				<material name="yellow"/>
 			</collision>
+	    <inertial>
+	      <mass value="1" />
+	      <inertia ixx="1.0" ixy="0.0" ixz="0.0"
+	               iyy="1.0" iyz="0.0"
+	               izz="1.0" />
+	    </inertial>
 		</link>
 		<link name="${prefix}link_2_l">
 			<visual>
@@ -34,6 +50,12 @@
 				</geometry>
 				<material name="yellow"/>
 			</collision>
+	    <inertial>
+	      <mass value="1" />
+	      <inertia ixx="1.0" ixy="0.0" ixz="0.0"
+	               iyy="1.0" iyz="0.0"
+	               izz="1.0" />
+	    </inertial>
 		</link>
 		<link name="${prefix}link_3_e">
 			<visual>
@@ -50,6 +72,12 @@
 				</geometry>
 				<material name="yellow"/>
 			</collision>
+	    <inertial>
+	      <mass value="1" />
+	      <inertia ixx="1.0" ixy="0.0" ixz="0.0"
+	               iyy="1.0" iyz="0.0"
+	               izz="1.0" />
+	    </inertial>
 		</link>
 		<link name="${prefix}link_4_u">
 			<visual>
@@ -66,6 +94,12 @@
 				</geometry>
 				<material name="yellow"/>
 			</collision>
+	    <inertial>
+	      <mass value="1" />
+	      <inertia ixx="1.0" ixy="0.0" ixz="0.0"
+	               iyy="1.0" iyz="0.0"
+	               izz="1.0" />
+	    </inertial>
 		</link>
 		<link name="${prefix}link_5_r">
 			<visual>
@@ -82,6 +116,12 @@
 				</geometry>
 				<material name="yellow"/>
 			</collision>
+	    <inertial>
+	      <mass value="1" />
+	      <inertia ixx="1.0" ixy="0.0" ixz="0.0"
+	               iyy="1.0" iyz="0.0"
+	               izz="1.0" />
+	    </inertial>
 		</link>
 		<link name="${prefix}link_6_b">
 			<visual>
@@ -98,6 +138,12 @@
 				</geometry>
 				<material name="yellow"/>
 			</collision>
+	    <inertial>
+	      <mass value="1" />
+	      <inertia ixx="1.0" ixy="0.0" ixz="0.0"
+	               iyy="1.0" iyz="0.0"
+	               izz="1.0" />
+	    </inertial>
 		</link>
 		<link name="${prefix}link_7_t">
 			<visual>
@@ -112,57 +158,105 @@
 				</geometry>
 				<material name="yellow"/>
 			</collision>
+	    <inertial>
+	      <mass value="1" />
+	      <inertia ixx="1.0" ixy="0.0" ixz="0.0"
+	               iyy="1.0" iyz="0.0"
+	               izz="1.0" />
+	    </inertial>
 		</link>
-	    <link name="${prefix}link_tool0" />
-		
+	    <link name="${prefix}link_tool0" >
+	    <inertial>
+	      <mass value="1" />
+	      <inertia ixx="1.0" ixy="0.0" ixz="0.0"
+	               iyy="1.0" iyz="0.0"
+	               izz="1.0" />
+	    </inertial>
+</link>
 		<joint name="${prefix}joint_1_s" type="revolute">
 			<parent link="${parent}"/>
 			<child link="${prefix}link_1_s"/>
 			<origin xyz="0.09996 ${reflect*0.0275} 0.32214" rpy="1.57 0 ${(reflect-1)*1.57}"/>
 			<axis xyz="0 0 ${-reflect}" />
-			<limit lower="-3.13" upper="3.13" effort="0" velocity="2.95" />
+			<xacro:unless value="${joint_limited}">
+				<limit lower="-3.13" upper="3.13" effort="0" velocity="2.95" />
+			</xacro:unless>
+            <xacro:if value="${joint_limited}">
+            	<limit lower="${link_1_s_lower_limit}" upper="${link_1_s_upper_limit}" effort="150.0" velocity="3.15"/>
+			</xacro:if>
+			
 		</joint>
 		<joint name="${prefix}joint_2_l" type="revolute">
 			<parent link="${prefix}link_1_s"/>
 			<child link="${prefix}link_2_l"/>
 			<origin xyz="0 0.0577 -0.2255" rpy="-1.57 0 0"/>
 			<axis xyz="0 0 ${-reflect}" />
-			<limit lower="-1.90" upper="1.90" effort="0" velocity="2.95" />
+			<xacro:unless value="${joint_limited}">
+			    <limit lower="-1.90" upper="1.90" effort="0" velocity="2.95" />
+			</xacro:unless>
+			<xacro:if value="${joint_limited}">
+            	<limit lower="${link_2_l_lower_limit}" upper="${link_2_l_upper_limit}" effort="150.0" velocity="3.15"/>
+			</xacro:if>
 		</joint>
 		<joint name="${prefix}joint_3_e" type="revolute">
 			<parent link="${prefix}link_2_l"/>
 			<child link="${prefix}link_3_e"/>
 			<origin xyz="0 0.1690 -0.0454" rpy="1.57 0 0"/>
 			<axis xyz="0 0 ${-reflect}" />
-			<limit lower="-2.95" upper="2.95" effort="0" velocity="2.95" />
+			<xacro:unless value="${joint_limited}">
+				<limit lower="-2.95" upper="2.95" effort="0" velocity="2.95" />
+			</xacro:unless>
+			<xacro:if value="${joint_limited}">
+            	<limit lower="${link_3_e_lower_limit}" upper="${link_3_e_upper_limit}" effort="150.0" velocity="3.15"/>
+			</xacro:if>
 		</joint>
 		<joint name="${prefix}joint_4_u" type="revolute">
 			<parent link="${prefix}link_3_e"/>
 			<child link="${prefix}link_4_u"/>
 			<origin xyz="0 -0.0085 -0.181" rpy="-1.57 0 0"/>
 			<axis xyz="0 0 ${reflect}" />
-			<limit lower="-2.36" upper="2.36" effort="0" velocity="2.95" />
+			<xacro:unless value="${joint_limited}">
+				<limit lower="-2.36" upper="2.36" effort="0" velocity="2.95" />
+			</xacro:unless>
+			<xacro:if value="${joint_limited}">
+            	<limit lower="${link_4_u_lower_limit}" upper="${link_4_u_upper_limit}" effort="150.0" velocity="3.15"/>
+			</xacro:if>
 		</joint>
 		<joint name="${prefix}joint_5_r" type="revolute">
 			<parent link="${prefix}link_4_u"/>
 			<child link="${prefix}link_5_r"/>
 			<origin xyz="0 0.1936 0.0155" rpy="1.57 0 0"/>
 			<axis xyz="0 0 ${reflect}" />
-			<limit lower="-3.13" upper="3.13" effort="0" velocity="3.48" />
+			<xacro:unless value="${joint_limited}">
+				<limit lower="-3.13" upper="3.13" effort="0" velocity="3.48" />
+			</xacro:unless>
+			<xacro:if value="${joint_limited}">
+            	<limit lower="${link_5_r_lower_limit}" upper="${link_5_r_upper_limit}" effort="150.0" velocity="3.15"/>
+			</xacro:if>
 		</joint>
 		<joint name="${prefix}joint_6_b" type="revolute">
 			<parent link="${prefix}link_5_r"/>
 			<child link="${prefix}link_6_b"/>
 			<origin xyz="0 0.0080 -0.155" rpy="-1.57 0 0"/>
 			<axis xyz="0 0 ${reflect}" />
-			<limit lower="-1.90" upper="1.90" effort="0" velocity="3.48" />
+			<xacro:unless value="${joint_limited}">
+				<limit lower="-1.90" upper="1.90" effort="0" velocity="3.48" />
+			</xacro:unless>
+			<xacro:if value="${joint_limited}">
+            	<limit lower="${link_6_b_lower_limit}" upper="${link_6_b_upper_limit}" effort="150.0" velocity="3.15"/>
+			</xacro:if>
 		</joint>
 		<joint name="${prefix}joint_7_t" type="revolute">
 			<parent link="${prefix}link_6_b"/>
 			<child link="${prefix}link_7_t"/>
 			<origin xyz="0 0.168 -0.015" rpy="1.57 0 0"/>
 			<axis xyz="0 0 ${-reflect}" />
-			<limit lower="-3.13" upper="3.13" effort="0" velocity="6.97" />
+			<xacro:unless value="${joint_limited}">
+				<limit lower="-3.13" upper="3.13" effort="0" velocity="6.97" />
+			</xacro:unless>
+			<xacro:if value="${joint_limited}">
+            	<limit lower="${link_7_t_lower_limit}" upper="${link_7_t_upper_limit}" effort="150.0" velocity="3.15"/>
+			</xacro:if>
 		</joint>
     <joint name="${prefix}joint_tool0" type="fixed" >
       <origin xyz="0 0 0.0" rpy="0 0 -3.13"/>

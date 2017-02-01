@@ -19,6 +19,12 @@
 					<color rgba="0 1 1 1"/>
 				</material>
 			</collision>
+	    <inertial>
+	      <mass value="1" />
+	      <inertia ixx="1.0" ixy="0.0" ixz="0.0"
+	               iyy="1.0" iyz="0.0"
+	               izz="1.0" />
+	    </inertial>
 		</link>
 		<link name="${prefix}link_b1">
 			<visual>
@@ -37,8 +43,14 @@
 				</geometry>
 				<material name="yellow"/>
 			</collision>
+	    <inertial>
+	      <mass value="1" />
+	      <inertia ixx="1.0" ixy="0.0" ixz="0.0"
+	               iyy="1.0" iyz="0.0"
+	               izz="1.0" />
+	    </inertial>
 		</link>
-		<link name="${prefix}link_b2">
+<!-- 		<link name="${prefix}link_b2">
 			<visual>
 				<origin rpy="0 0 0" xyz="0 0 0"/>
 				<geometry>
@@ -55,7 +67,13 @@
 				</geometry>
 				<material name="yellow"/>
 			</collision>
-		</link>
+	    <inertial>
+	      <mass value="1" />
+	      <inertia ixx="1.0" ixy="0.0" ixz="0.0"
+	               iyy="1.0" iyz="0.0"
+	               izz="1.0" />
+	    </inertial>
+		</link> -->
 		<!-- joint list -->
 		<joint name="${prefix}joint_b1" type="revolute">
 			<parent link="${prefix}base_link"/>
@@ -64,14 +82,14 @@
 			<axis xyz="0 0 1" />
 			<limit lower="-2.9570" upper="2.9570" effort="100" velocity="2.26" />
 		</joint>
-		<joint name="${prefix}joint_b2" type="revolute">
-			<parent link="${prefix}base_link"/>
+<!-- 		<joint name="${prefix}joint_b2" type="revolute">
+			<parent link="base_link"/>
 			<child link="${prefix}link_b2"/>
 			<origin xyz="0.09257 0 0.8835" rpy="0 0 0"/>
 			<axis xyz="0 0 1" />
 			<limit lower="-2.9570" upper="2.9570" effort="100" velocity="2.26" />
 			<mimic joint="${prefix}joint_b1" multiplier="1" offset="0"/>
-		</joint>
+		</joint> -->
 		<!-- end of joint list -->
 	</xacro:macro>
 </robot>
