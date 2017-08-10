@@ -17,6 +17,7 @@
         <joint name="arm_left_joint_5_r" />
         <joint name="arm_left_joint_6_b" />
         <joint name="arm_left_joint_7_t" />
+        <chain base_link="torso_link_b1" tip_link="arm_left_link_tool0" />
     </group>
     <group name="arm_right">
         <joint name="arm_right_joint_1_s" />
@@ -26,18 +27,37 @@
         <joint name="arm_right_joint_5_r" />
         <joint name="arm_right_joint_6_b" />
         <joint name="arm_right_joint_7_t" />
+        <chain base_link="torso_link_b1" tip_link="arm_right_link_tool0" />
     </group>
     <group name="torso">
         <joint name="torso_joint_b1" />
-        <joint name="torso_joint_b2" />
     </group>
     <group name="arms">
         <group name="arm_left" />
         <group name="arm_right" />
     </group>
     <group name="sda10f">
-        <group name="arms" />
+        <joint name="arm_left_joint_1_s" />
+        <joint name="arm_left_joint_2_l" />
+        <joint name="arm_left_joint_3_e" />
+        <joint name="arm_left_joint_4_u" />
+        <joint name="arm_left_joint_5_r" />
+        <joint name="arm_left_joint_6_b" />
+        <joint name="arm_left_joint_7_t" />
+        <joint name="arm_right_joint_1_s" />
+        <joint name="arm_right_joint_2_l" />
+        <joint name="arm_right_joint_3_e" />
+        <joint name="arm_right_joint_4_u" />
+        <joint name="arm_right_joint_5_r" />
+        <joint name="arm_right_joint_6_b" />
+        <joint name="arm_right_joint_7_t" />
         <group name="torso" />
+    </group>
+    <group name="arm_left_torso">
+        <chain base_link="base_link" tip_link="arm_left_link_tool0" />
+    </group>
+    <group name="arm_right_torso">
+        <chain base_link="base_link" tip_link="arm_right_link_tool0" />
     </group>
     <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
     <virtual_joint name="FixedBase" type="fixed" parent_frame="world" child_link="base_link" />
