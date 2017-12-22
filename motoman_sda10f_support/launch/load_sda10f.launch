@@ -1,4 +1,7 @@
-
+<?xml version="1.0"?>
 <launch>
-	<param name="robot_description" command="$(find xacro)/xacro.py '$(find motoman_sda10f_support)/urdf/sda10f.xacro'" />
+   <arg name="joint_limited" default="true"/>
+
+   <param if="$(arg joint_limited)" name="robot_description" command="$(find xacro)/xacro.py --inorder '$(find motoman_sda10f_support)/urdf/sda10f_joint_limited.xacro'" />
+    <param unless="$(arg joint_limited)" name="robot_description" command="$(find xacro)/xacro.py --inorder '$(find motoman_sda10f_support)/urdf/sda10f.xacro'" />
 </launch>
