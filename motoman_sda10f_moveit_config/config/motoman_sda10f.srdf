@@ -54,13 +54,13 @@
         <group name="torso" />
     </group>
     <group name="arm_left_torso">
-        <chain base_link="base_link" tip_link="arm_left_link_tool0" />
+        <chain base_link="torso_base_link" tip_link="arm_left_link_tool0" />
     </group>
     <group name="arm_right_torso">
-        <chain base_link="base_link" tip_link="arm_right_link_tool0" />
+        <chain base_link="torso_base_link" tip_link="arm_right_link_tool0" />
     </group>
     <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
-    <virtual_joint name="FixedBase" type="fixed" parent_frame="world" child_link="base_link" />
+    <virtual_joint name="FixedBase" type="fixed" parent_frame="world" child_link="torso_base_link" />
     <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
     <disable_collisions link1="arm_left_link_1_s" link2="arm_left_link_2_l" reason="Adjacent" />
     <disable_collisions link1="arm_left_link_1_s" link2="arm_left_link_3_e" reason="Never" />
