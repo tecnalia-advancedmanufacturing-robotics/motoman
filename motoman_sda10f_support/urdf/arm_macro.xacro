@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
-	<xacro:macro name="motoman_arm" params="name prefix parent *origin reflect 
+	<xacro:macro name="motoman_arm" params="name prefix parent *origin reflect
 		joint_limited
 		link_1_s_lower_limit:=${-pi}  link_1_s_upper_limit:=${pi}
         link_2_l_lower_limit:=${-pi}  link_2_l_upper_limit:=${pi}
@@ -181,10 +181,10 @@
 			<xacro:unless value="${joint_limited}">
 				<limit lower="-3.13" upper="3.13" effort="0" velocity="2.95" />
 			</xacro:unless>
-            <xacro:if value="${joint_limited}">
-            	<limit lower="${link_1_s_lower_limit}" upper="${link_1_s_upper_limit}" effort="150.0" velocity="3.15"/>
+      <xacro:if value="${joint_limited}">
+        <limit lower="${link_1_s_lower_limit}" upper="${link_1_s_upper_limit}" effort="0" velocity="2.95"/>
 			</xacro:if>
-			
+
 		</joint>
 		<joint name="${prefix}joint_2_l" type="revolute">
 			<parent link="${prefix}link_1_s"/>
@@ -195,7 +195,7 @@
 			    <limit lower="-1.90" upper="1.90" effort="0" velocity="2.95" />
 			</xacro:unless>
 			<xacro:if value="${joint_limited}">
-            	<limit lower="${link_2_l_lower_limit}" upper="${link_2_l_upper_limit}" effort="150.0" velocity="3.15"/>
+        <limit lower="${link_2_l_lower_limit}" upper="${link_2_l_upper_limit}" effort="0" velocity="2.95"/>
 			</xacro:if>
 		</joint>
 		<joint name="${prefix}joint_3_e" type="revolute">
@@ -207,7 +207,7 @@
 				<limit lower="-2.95" upper="2.95" effort="0" velocity="2.95" />
 			</xacro:unless>
 			<xacro:if value="${joint_limited}">
-            	<limit lower="${link_3_e_lower_limit}" upper="${link_3_e_upper_limit}" effort="150.0" velocity="3.15"/>
+        <limit lower="${link_3_e_lower_limit}" upper="${link_3_e_upper_limit}" effort="0" velocity="2.95"/>
 			</xacro:if>
 		</joint>
 		<joint name="${prefix}joint_4_u" type="revolute">
@@ -219,7 +219,7 @@
 				<limit lower="-2.36" upper="2.36" effort="0" velocity="2.95" />
 			</xacro:unless>
 			<xacro:if value="${joint_limited}">
-            	<limit lower="${link_4_u_lower_limit}" upper="${link_4_u_upper_limit}" effort="150.0" velocity="3.15"/>
+        <limit lower="${link_4_u_lower_limit}" upper="${link_4_u_upper_limit}" effort="0" velocity="2.95"/>
 			</xacro:if>
 		</joint>
 		<joint name="${prefix}joint_5_r" type="revolute">
@@ -231,7 +231,7 @@
 				<limit lower="-3.13" upper="3.13" effort="0" velocity="3.48" />
 			</xacro:unless>
 			<xacro:if value="${joint_limited}">
-            	<limit lower="${link_5_r_lower_limit}" upper="${link_5_r_upper_limit}" effort="150.0" velocity="3.15"/>
+        <limit lower="${link_5_r_lower_limit}" upper="${link_5_r_upper_limit}" effort="0" velocity="3.48"/>
 			</xacro:if>
 		</joint>
 		<joint name="${prefix}joint_6_b" type="revolute">
@@ -243,7 +243,7 @@
 				<limit lower="-1.90" upper="1.90" effort="0" velocity="3.48" />
 			</xacro:unless>
 			<xacro:if value="${joint_limited}">
-            	<limit lower="${link_6_b_lower_limit}" upper="${link_6_b_upper_limit}" effort="150.0" velocity="3.15"/>
+        <limit lower="${link_6_b_lower_limit}" upper="${link_6_b_upper_limit}" effort="0" velocity="3.48"/>
 			</xacro:if>
 		</joint>
 		<joint name="${prefix}joint_7_t" type="revolute">
@@ -255,7 +255,7 @@
 				<limit lower="-3.13" upper="3.13" effort="0" velocity="6.97" />
 			</xacro:unless>
 			<xacro:if value="${joint_limited}">
-            	<limit lower="${link_7_t_lower_limit}" upper="${link_7_t_upper_limit}" effort="150.0" velocity="3.15"/>
+        <limit lower="${link_7_t_lower_limit}" upper="${link_7_t_upper_limit}" effort="0" velocity="6.97"/>
 			</xacro:if>
 		</joint>
     <joint name="${prefix}joint_tool0" type="fixed" >
