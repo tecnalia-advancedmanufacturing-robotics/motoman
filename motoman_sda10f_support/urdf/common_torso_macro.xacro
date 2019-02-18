@@ -1,6 +1,16 @@
 <?xml version="1.0" ?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
-	<xacro:macro name="torso" params="name prefix">
+	<xacro:macro name="torso" params="
+		name 
+		prefix
+		use_sim
+		torso_joint_b1_joint_offset
+		torso_joint_b1_joint_x_offset
+		torso_joint_b1_joint_y_offset
+		torso_joint_b1_joint_z_offset
+		torso_joint_b1_joint_a_offset
+		torso_joint_b1_joint_b_offset
+		torso_joint_b1_joint_c_offset">
 		<!-- link list -->
 		<link name="${prefix}base_link">
 			<visual>
@@ -26,6 +36,14 @@
 	               izz="1.0" />
 	    </inertial>
 		</link>
+		<link name="${prefix}b1_link_offset">
+    	<inertial>
+        	<mass value="1" />
+        	<inertia ixx="1.0" ixy="0.0" ixz="0.0"
+                 iyy="1.0" iyz="0.0"
+                 izz="1.0" />
+      		</inertial>
+    	</link>
 		<link name="${prefix}link_b1">
 			<visual>
 				<origin rpy="0 0 0" xyz="0 0 0"/>
@@ -50,46 +68,56 @@
 	               izz="1.0" />
 	    </inertial>
 		</link>
-<!-- 		<link name="${prefix}link_b2">
-			<visual>
-				<origin rpy="0 0 0" xyz="0 0 0"/>
-				<geometry>
-					<mesh filename="package://motoman_sda10f_support/meshes/sda10f/visual/motoman_axis_b1.stl"/>
-				</geometry>
-				<material name="silver">
-					<color rgba="0.8 0.8 0.8 1"/>
-				</material>
-			</visual>
-			<collision>
-				<origin rpy="0 0 0" xyz="0 0 0"/>
-				<geometry>
-					<mesh filename="package://motoman_sda10f_support/meshes/sda10f/collision/motoman_axis_b1.stl" />
-				</geometry>
-				<material name="yellow"/>
-			</collision>
-	    <inertial>
-	      <mass value="1" />
-	      <inertia ixx="1.0" ixy="0.0" ixz="0.0"
-	               iyy="1.0" iyz="0.0"
-	               izz="1.0" />
-	    </inertial>
-		</link> -->
+		<xacro:if value="${use_sim== 'false'}">
+			<link name="${prefix}link_b2">
+				<visual>
+					<origin rpy="0 0 0" xyz="0 0 0"/>
+					<geometry>
+						<mesh filename="package://motoman_sda10f_support/meshes/sda10f/visual/motoman_axis_b1.stl"/>
+					</geometry>
+					<material name="silver">
+						<color rgba="0.8 0.8 0.8 1"/>
+					</material>
+				</visual>
+				<collision>
+					<origin rpy="0 0 0" xyz="0 0 0"/>
+					<geometry>
+						<mesh filename="package://motoman_sda10f_support/meshes/sda10f/collision/motoman_axis_b1.stl" />
+					</geometry>
+					<material name="yellow"/>
+				</collision>
+	    	<inertial>
+	    	  <mass value="1" />
+	    	  <inertia ixx="1.0" ixy="0.0" ixz="0.0"
+	    	           iyy="1.0" iyz="0.0"
+	    	           izz="1.0" />
+	    	</inertial>
+			</link>
+		</xacro:if>
 		<!-- joint list -->
-		<joint name="${prefix}joint_b1" type="revolute">
+		<joint name="${prefix}b1_joint_offset" type="fixed">
+			<origin xyz="${torso_joint_b1_joint_x_offset} ${torso_joint_b1_joint_y_offset} ${torso_joint_b1_joint_z_offset}"
+			rpy="${torso_joint_b1_joint_a_offset} ${torso_joint_b1_joint_b_offset} ${torso_joint_b1_joint_c_offset}"/>
 			<parent link="${prefix}base_link"/>
+			<child link="${prefix}b1_link_offset"/>
+		</joint>
+		<joint name="${prefix}joint_b1" type="revolute">
+			<parent link="${prefix}b1_link_offset"/>
 			<child link="${prefix}link_b1"/>
-			<origin xyz="0.09257 0 0.8835" rpy="0 0 0"/>
+			<origin xyz="0.09257 0 0.8835" rpy="0 0 ${torso_joint_b1_joint_offset}"/>
 			<axis xyz="0 0 1" />
 			<limit lower="-2.9570" upper="2.9570" effort="100" velocity="2.26" />
 		</joint>
-<!-- 		<joint name="${prefix}joint_b2" type="revolute">
-			<parent link="base_link"/>
-			<child link="${prefix}link_b2"/>
-			<origin xyz="0.09257 0 0.8835" rpy="0 0 0"/>
-			<axis xyz="0 0 1" />
-			<limit lower="-2.9570" upper="2.9570" effort="100" velocity="2.26" />
-			<mimic joint="${prefix}joint_b1" multiplier="1" offset="0"/>
-		</joint> -->
+		<xacro:if value="${use_sim == 'false'}">
+			<joint  if="${use_sim}" name="${prefix}joint_b2" type="revolute">
+				<parent link="${prefix}b1_link_offset"/>
+				<child link="${prefix}link_b2"/>
+				<origin xyz="0.09257 0 0.8835" rpy="0 0  ${torso_joint_b1_joint_offset}"/>
+				<axis xyz="0 0 1" />
+				<limit lower="-2.9570" upper="2.9570" effort="100" velocity="2.26" />
+				<mimic joint="${prefix}joint_b1" multiplier="1" offset="0"/>
+			</joint>
+		</xacro:if>
 		<!-- end of joint list -->
 	</xacro:macro>
 </robot>

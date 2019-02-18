@@ -1,5 +1,4 @@
 <?xml version="1.0" ?>
-
 <robot name="motoman_sda10f" xmlns:xacro="http://ros.org/wiki/xacro">
   <link name="world"/>
   <joint name="world_joint" type="fixed">
@@ -8,7 +7,7 @@
     <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
   </joint>
   <xacro:include filename="$(find motoman_sda10f_support)/urdf/sda10f_joint_limited_macro.xacro" />
-  <xacro:motoman_sda10f prefix=""/>
+  <xacro:motoman_sda10f prefix="" use_sim="false"/>
   <xacro:include filename="$(find motoman_sda10f_support)/urdf/sda10f_transmission.xacro"/>
   <xacro:include filename="$(find motoman_sda10f_support)/urdf/gazebo_plugin.xacro"/>
 </robot>

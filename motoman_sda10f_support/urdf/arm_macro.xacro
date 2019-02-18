@@ -2,6 +2,55 @@
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
 	<xacro:macro name="motoman_arm" params="name prefix parent *origin reflect
 		joint_limited
+		joint_1_s_joint_offset:=${0.0}
+		joint_2_l_joint_offset:=${0.0}
+		joint_3_e_joint_offset:=${0.0}
+		joint_4_u_joint_offset:=${0.0}
+		joint_5_r_joint_offset:=${0.0}
+		joint_6_b_joint_offset:=${0.0}
+		joint_7_t_joint_offset:=${0.0}
+		joint_1_s_joint_x_offset:=${0.0}
+		joint_1_s_joint_y_offset:=${0.0}
+		joint_1_s_joint_z_offset:=${0.0}
+		joint_1_s_joint_a_offset:=${0.0}
+		joint_1_s_joint_b_offset:=${0.0}
+		joint_1_s_joint_c_offset:=${0.0}
+		joint_2_l_joint_x_offset:=${0.0}
+		joint_2_l_joint_y_offset:=${0.0}
+		joint_2_l_joint_z_offset:=${0.0}
+		joint_2_l_joint_a_offset:=${0.0}
+		joint_2_l_joint_b_offset:=${0.0}
+		joint_2_l_joint_c_offset:=${0.0}
+		joint_3_e_joint_x_offset:=${0.0}
+		joint_3_e_joint_y_offset:=${0.0}
+		joint_3_e_joint_z_offset:=${0.0}
+		joint_3_e_joint_a_offset:=${0.0}
+		joint_3_e_joint_b_offset:=${0.0}
+		joint_3_e_joint_c_offset:=${0.0}
+		joint_4_u_joint_x_offset:=${0.0}
+		joint_4_u_joint_y_offset:=${0.0}
+		joint_4_u_joint_z_offset:=${0.0}
+		joint_4_u_joint_a_offset:=${0.0}
+		joint_4_u_joint_b_offset:=${0.0}
+		joint_4_u_joint_c_offset:=${0.0}
+		joint_5_r_joint_x_offset:=${0.0}
+		joint_5_r_joint_y_offset:=${0.0}
+		joint_5_r_joint_z_offset:=${0.0}
+		joint_5_r_joint_a_offset:=${0.0}
+		joint_5_r_joint_b_offset:=${0.0}
+		joint_5_r_joint_c_offset:=${0.0}
+		joint_6_b_joint_x_offset:=${0.0}
+		joint_6_b_joint_y_offset:=${0.0}
+		joint_6_b_joint_z_offset:=${0.0}
+		joint_6_b_joint_a_offset:=${0.0}
+		joint_6_b_joint_b_offset:=${0.0}
+		joint_6_b_joint_c_offset:=${0.0}
+		joint_7_t_joint_x_offset:=${0.0}
+		joint_7_t_joint_y_offset:=${0.0}
+		joint_7_t_joint_z_offset:=${0.0}
+		joint_7_t_joint_a_offset:=${0.0}
+		joint_7_t_joint_b_offset:=${0.0}
+		joint_7_t_joint_c_offset:=${0.0}
 		link_1_s_lower_limit:=${-pi}  link_1_s_upper_limit:=${pi}
         link_2_l_lower_limit:=${-pi}  link_2_l_upper_limit:=${pi}
         link_3_e_lower_limit:=${-pi}  link_3_e_upper_limit:=${pi}
@@ -35,6 +84,14 @@
 	               izz="1.0" />
 	    </inertial>
 		</link>
+		<link name="${prefix}2_l_link_offset">
+		<inertial>
+              <mass value="1" />
+              <inertia ixx="1.0" ixy="0.0" ixz="0.0"
+                       iyy="1.0" iyz="0.0"
+                       izz="1.0" />
+        </inertial>
+        </link>
 		<link name="${prefix}link_2_l">
 			<visual>
 				<origin rpy="0 0 0" xyz="0 0 0"/>
@@ -57,6 +114,14 @@
 	               izz="1.0" />
 	    </inertial>
 		</link>
+		<link name="${prefix}3_e_link_offset">
+		<inertial>
+              <mass value="1" />
+              <inertia ixx="1.0" ixy="0.0" ixz="0.0"
+                       iyy="1.0" iyz="0.0"
+                       izz="1.0" />
+        </inertial>
+        </link>
 		<link name="${prefix}link_3_e">
 			<visual>
 				<origin rpy="0 0 0" xyz="0 0 0"/>
@@ -79,6 +144,14 @@
 	               izz="1.0" />
 	    </inertial>
 		</link>
+		<link name="${prefix}4_u_link_offset">
+		<inertial>
+              <mass value="1" />
+              <inertia ixx="1.0" ixy="0.0" ixz="0.0"
+                       iyy="1.0" iyz="0.0"
+                       izz="1.0" />
+        </inertial>
+        </link>
 		<link name="${prefix}link_4_u">
 			<visual>
 				<origin rpy="0 0 0" xyz="0 0 0"/>
@@ -101,6 +174,14 @@
 	               izz="1.0" />
 	    </inertial>
 		</link>
+		<link name="${prefix}5_r_link_offset">
+		<inertial>
+              <mass value="1" />
+              <inertia ixx="1.0" ixy="0.0" ixz="0.0"
+                       iyy="1.0" iyz="0.0"
+                       izz="1.0" />
+        </inertial>
+        </link>
 		<link name="${prefix}link_5_r">
 			<visual>
 				<origin rpy="0 0 0" xyz="0 0 0"/>
@@ -123,6 +204,14 @@
 	               izz="1.0" />
 	    </inertial>
 		</link>
+		<link name="${prefix}6_b_link_offset">
+		<inertial>
+              <mass value="1" />
+              <inertia ixx="1.0" ixy="0.0" ixz="0.0"
+                       iyy="1.0" iyz="0.0"
+                       izz="1.0" />
+        </inertial>
+        </link>
 		<link name="${prefix}link_6_b">
 			<visual>
 				<origin rpy="0 0 0" xyz="0 0 0"/>
@@ -145,6 +234,14 @@
 	               izz="1.0" />
 	    </inertial>
 		</link>
+		<link name="${prefix}7_t_link_offset">
+		<inertial>
+              <mass value="1" />
+              <inertia ixx="1.0" ixy="0.0" ixz="0.0"
+                       iyy="1.0" iyz="0.0"
+                       izz="1.0" />
+        </inertial>
+        </link>
 		<link name="${prefix}link_7_t">
 			<visual>
 				<geometry>
@@ -176,7 +273,7 @@
 		<joint name="${prefix}joint_1_s" type="revolute">
 			<parent link="${parent}"/>
 			<child link="${prefix}link_1_s"/>
-			<origin xyz="0.09996 ${reflect*0.0275} 0.32214" rpy="1.57 0 ${(reflect-1)*1.57}"/>
+			<origin xyz="0.09996 ${reflect*0.0275} 0.32214" rpy="1.57 0 ${(reflect-1)*1.57+joint_1_s_joint_offset}"/>
 			<axis xyz="0 0 ${-reflect}" />
 			<xacro:unless value="${joint_limited}">
 				<limit lower="-3.13" upper="3.13" effort="0" velocity="2.95" />
@@ -184,12 +281,19 @@
       <xacro:if value="${joint_limited}">
         <limit lower="${link_1_s_lower_limit}" upper="${link_1_s_upper_limit}" effort="0" velocity="2.95"/>
 			</xacro:if>
-
 		</joint>
-		<joint name="${prefix}joint_2_l" type="revolute">
+
+		<joint name="${prefix}2_l_joint_offset" type="fixed">
+			<origin xyz="${joint_2_l_joint_x_offset} ${joint_2_l_joint_y_offset} ${joint_2_l_joint_z_offset}"
+			rpy="${joint_2_l_joint_a_offset} ${joint_2_l_joint_b_offset} ${joint_2_l_joint_c_offset}"/>
 			<parent link="${prefix}link_1_s"/>
+			<child link="${prefix}2_l_link_offset"/>
+		</joint>
+
+		<joint name="${prefix}joint_2_l" type="revolute">
+			<parent link="${prefix}2_l_link_offset"/>
 			<child link="${prefix}link_2_l"/>
-			<origin xyz="0 0.0577 -0.2255" rpy="-1.57 0 0"/>
+			<origin xyz="0 0.0577 -0.2255" rpy="-1.57 0 ${joint_2_l_joint_offset}"/>
 			<axis xyz="0 0 ${-reflect}" />
 			<xacro:unless value="${joint_limited}">
 			    <limit lower="-1.90" upper="1.90" effort="0" velocity="2.95" />
@@ -198,10 +302,18 @@
         <limit lower="${link_2_l_lower_limit}" upper="${link_2_l_upper_limit}" effort="0" velocity="2.95"/>
 			</xacro:if>
 		</joint>
-		<joint name="${prefix}joint_3_e" type="revolute">
+
+		<joint name="${prefix}3_e_joint_offset" type="fixed">
+			<origin xyz="${joint_3_e_joint_x_offset} ${joint_3_e_joint_y_offset} ${joint_3_e_joint_z_offset}"
+			rpy="${joint_3_e_joint_a_offset} ${joint_3_e_joint_b_offset} ${joint_3_e_joint_c_offset}"/>
 			<parent link="${prefix}link_2_l"/>
+			<child link="${prefix}3_e_link_offset"/>
+		</joint>
+
+		<joint name="${prefix}joint_3_e" type="revolute">
+			<parent link="${prefix}3_e_link_offset"/>
 			<child link="${prefix}link_3_e"/>
-			<origin xyz="0 0.1690 -0.0454" rpy="1.57 0 0"/>
+			<origin xyz="0 0.1690 -0.0454" rpy="1.57 0 ${joint_3_e_joint_offset}"/>
 			<axis xyz="0 0 ${-reflect}" />
 			<xacro:unless value="${joint_limited}">
 				<limit lower="-2.95" upper="2.95" effort="0" velocity="2.95" />
@@ -210,10 +322,18 @@
         <limit lower="${link_3_e_lower_limit}" upper="${link_3_e_upper_limit}" effort="0" velocity="2.95"/>
 			</xacro:if>
 		</joint>
-		<joint name="${prefix}joint_4_u" type="revolute">
+
+		<joint name="${prefix}4_u_joint_offset" type="fixed">
+			<origin xyz="${joint_4_u_joint_x_offset} ${joint_4_u_joint_y_offset} ${joint_4_u_joint_z_offset}"
+			rpy="${joint_4_u_joint_a_offset} ${joint_4_u_joint_b_offset} ${joint_4_u_joint_c_offset}"/>
 			<parent link="${prefix}link_3_e"/>
+			<child link="${prefix}4_u_link_offset"/>
+		</joint>
+
+		<joint name="${prefix}joint_4_u" type="revolute">
+			<parent link="${prefix}4_u_link_offset"/>
 			<child link="${prefix}link_4_u"/>
-			<origin xyz="0 -0.0085 -0.181" rpy="-1.57 0 0"/>
+			<origin xyz="0 -0.0085 -0.181" rpy="-1.57 0 ${joint_4_u_joint_offset}"/>
 			<axis xyz="0 0 ${reflect}" />
 			<xacro:unless value="${joint_limited}">
 				<limit lower="-2.36" upper="2.36" effort="0" velocity="2.95" />
@@ -222,10 +342,18 @@
         <limit lower="${link_4_u_lower_limit}" upper="${link_4_u_upper_limit}" effort="0" velocity="2.95"/>
 			</xacro:if>
 		</joint>
-		<joint name="${prefix}joint_5_r" type="revolute">
+
+		<joint name="${prefix}5_r_joint_offset" type="fixed">
+			<origin xyz="${joint_5_r_joint_x_offset} ${joint_5_r_joint_y_offset} ${joint_5_r_joint_z_offset}"
+			rpy="${joint_5_r_joint_a_offset} ${joint_5_r_joint_b_offset} ${joint_5_r_joint_c_offset}"/>
 			<parent link="${prefix}link_4_u"/>
+			<child link="${prefix}5_r_link_offset"/>
+		</joint>
+
+		<joint name="${prefix}joint_5_r" type="revolute">
+			<parent link="${prefix}5_r_link_offset"/>
 			<child link="${prefix}link_5_r"/>
-			<origin xyz="0 0.1936 0.0155" rpy="1.57 0 0"/>
+			<origin xyz="0 0.1936 0.0155" rpy="1.57 0 ${joint_5_r_joint_offset}"/>
 			<axis xyz="0 0 ${reflect}" />
 			<xacro:unless value="${joint_limited}">
 				<limit lower="-3.13" upper="3.13" effort="0" velocity="3.48" />
@@ -234,10 +362,18 @@
         <limit lower="${link_5_r_lower_limit}" upper="${link_5_r_upper_limit}" effort="0" velocity="3.48"/>
 			</xacro:if>
 		</joint>
-		<joint name="${prefix}joint_6_b" type="revolute">
+
+		<joint name="${prefix}6_b_joint_offset" type="fixed">
+			<origin xyz="${joint_6_b_joint_x_offset} ${joint_6_b_joint_y_offset} ${joint_6_b_joint_z_offset}"
+			rpy="${joint_6_b_joint_a_offset} ${joint_6_b_joint_b_offset} ${joint_6_b_joint_c_offset}"/>
 			<parent link="${prefix}link_5_r"/>
+			<child link="${prefix}6_b_link_offset"/>
+		</joint>
+
+		<joint name="${prefix}joint_6_b" type="revolute">
+			<parent link="${prefix}6_b_link_offset"/>
 			<child link="${prefix}link_6_b"/>
-			<origin xyz="0 0.0080 -0.155" rpy="-1.57 0 0"/>
+			<origin xyz="0 0.0080 -0.155" rpy="-1.57 0 ${joint_6_b_joint_offset}"/>
 			<axis xyz="0 0 ${reflect}" />
 			<xacro:unless value="${joint_limited}">
 				<limit lower="-1.90" upper="1.90" effort="0" velocity="3.48" />
@@ -246,10 +382,18 @@
         <limit lower="${link_6_b_lower_limit}" upper="${link_6_b_upper_limit}" effort="0" velocity="3.48"/>
 			</xacro:if>
 		</joint>
-		<joint name="${prefix}joint_7_t" type="revolute">
+
+		<joint name="${prefix}7_t_joint_offset" type="fixed">
+			<origin xyz="${joint_7_t_joint_x_offset} ${joint_7_t_joint_y_offset} ${joint_7_t_joint_z_offset}"
+			rpy="${joint_7_t_joint_a_offset} ${joint_7_t_joint_b_offset} ${joint_7_t_joint_c_offset}"/>
 			<parent link="${prefix}link_6_b"/>
+			<child link="${prefix}7_t_link_offset"/>
+		</joint>
+
+		<joint name="${prefix}joint_7_t" type="revolute">
+			<parent link="${prefix}7_t_link_offset"/>
 			<child link="${prefix}link_7_t"/>
-			<origin xyz="0 0.168 -0.015" rpy="-1.57 0 0"/>
+			<origin xyz="0 0.168 -0.015" rpy="-1.57 0 ${joint_7_t_joint_offset}"/>
 			<axis xyz="0 0 ${-reflect}" />
 			<xacro:unless value="${joint_limited}">
 				<limit lower="-3.13" upper="3.13" effort="0" velocity="6.97" />

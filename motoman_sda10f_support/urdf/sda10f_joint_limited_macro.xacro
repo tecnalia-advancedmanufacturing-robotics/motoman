@@ -1,12 +1,37 @@
 <?xml version="1.0" ?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
+
         <xacro:include filename="$(find motoman_sda10f_support)/urdf/common_torso_macro.xacro" />
         <xacro:include filename="$(find motoman_sda10f_support)/urdf/arm_macro.xacro" />
-        <xacro:macro name="motoman_sda10f" params="prefix">
+        <xacro:include filename="$(find motoman_sda10f_support)/urdf/sda10f_calibration_offsets.xacro" />
+        <xacro:macro name="motoman_sda10f" params="prefix use_sim">
 
-            <xacro:torso name="${prefix}torso" prefix="${prefix}torso_"/>
-
-            <xacro:motoman_arm name="${prefix}arm_left" prefix="${prefix}arm_left_" parent="${prefix}torso_link_b1" reflect="1"
+            <xacro:torso name="${prefix}torso" prefix="${prefix}torso_"
+                 use_sim="${use_sim}"
+                 torso_joint_b1_joint_offset="${torso_joint_b1_offset}"
+                 torso_joint_b1_joint_x_offset="${torso_joint_b1_x_offset}"
+                 torso_joint_b1_joint_y_offset="${torso_joint_b1_y_offset}"
+                 torso_joint_b1_joint_z_offset="${torso_joint_b1_z_offset}"
+                 torso_joint_b1_joint_a_offset="${torso_joint_b1_a_offset}"
+                 torso_joint_b1_joint_b_offset="${torso_joint_b1_b_offset}"
+                 torso_joint_b1_joint_c_offset="${torso_joint_b1_c_offset}"
+            />
+            <joint name="${prefix}arm_left_joint_1_s_joint_offset" type="fixed">
+                <origin xyz="${arm_left_joint_1_s_x_offset} ${arm_left_joint_1_s_y_offset} ${arm_left_joint_1_s_z_offset}"
+                rpy="${arm_left_joint_1_s_a_offset} ${arm_left_joint_1_s_b_offset} ${arm_left_joint_1_s_c_offset}"/>
+                <parent link="${prefix}torso_link_b1"/>
+                <child link="${prefix}arm_left_joint_1_s_link_offset"/>
+            </joint>
+            
+            <link name="${prefix}arm_left_joint_1_s_link_offset">
+            <inertial>
+                <mass value="1" />
+                <inertia ixx="1.0" ixy="0.0" ixz="0.0"
+                       iyy="1.0" iyz="0.0"
+                       izz="1.0" />
+                </inertial>
+            </link>
+            <xacro:motoman_arm name="${prefix}arm_left" prefix="${prefix}arm_left_" parent="${prefix}arm_left_joint_1_s_link_offset" reflect="1"
                  joint_limited="true"
                  link_1_s_lower_limit="${-pi}"  link_1_s_upper_limit="${pi}"
                  link_2_l_lower_limit="${-pi}"  link_2_l_upper_limit="${pi}"
@@ -15,11 +40,68 @@
                  link_5_r_lower_limit="${-pi}"  link_5_r_upper_limit="${pi}"
                  link_6_b_lower_limit="${-pi}"  link_6_b_upper_limit="${pi}"
                  link_7_t_lower_limit="${-pi}"  link_7_t_upper_limit="${pi}"
+                 joint_1_s_joint_offset="${arm_left_joint_1_s_offset}"
+                 joint_2_l_joint_offset="${arm_left_joint_2_l_offset}"
+                 joint_3_e_joint_offset="${arm_left_joint_3_e_offset}"
+                 joint_4_u_joint_offset="${arm_left_joint_4_u_offset}"
+                 joint_5_r_joint_offset="${arm_left_joint_5_r_offset}"
+                 joint_6_b_joint_offset="${arm_left_joint_6_b_offset}"
+                 joint_7_t_joint_offset="${arm_left_joint_7_t_offset}"
+                 joint_2_l_joint_x_offset="${arm_left_joint_2_l_x_offset}"
+                 joint_2_l_joint_y_offset="${arm_left_joint_2_l_y_offset}"
+                 joint_2_l_joint_z_offset="${arm_left_joint_2_l_z_offset}"
+                 joint_2_l_joint_a_offset="${arm_left_joint_2_l_a_offset}"
+                 joint_2_l_joint_b_offset="${arm_left_joint_2_l_b_offset}"
+                 joint_2_l_joint_c_offset="${arm_left_joint_2_l_c_offset}"
+                 joint_3_e_joint_x_offset="${arm_left_joint_3_e_x_offset}"
+                 joint_3_e_joint_y_offset="${arm_left_joint_3_e_y_offset}"
+                 joint_3_e_joint_z_offset="${arm_left_joint_3_e_z_offset}"
+                 joint_3_e_joint_a_offset="${arm_left_joint_3_e_a_offset}"
+                 joint_3_e_joint_b_offset="${arm_left_joint_3_e_b_offset}"
+                 joint_3_e_joint_c_offset="${arm_left_joint_3_e_c_offset}"
+                 joint_4_u_joint_x_offset="${arm_left_joint_4_u_x_offset}"
+                 joint_4_u_joint_y_offset="${arm_left_joint_4_u_y_offset}"
+                 joint_4_u_joint_z_offset="${arm_left_joint_4_u_z_offset}"
+                 joint_4_u_joint_a_offset="${arm_left_joint_4_u_a_offset}"
+                 joint_4_u_joint_b_offset="${arm_left_joint_4_u_b_offset}"
+                 joint_4_u_joint_c_offset="${arm_left_joint_4_u_c_offset}"
+                 joint_5_r_joint_x_offset="${arm_left_joint_5_r_x_offset}"
+                 joint_5_r_joint_y_offset="${arm_left_joint_5_r_y_offset}"
+                 joint_5_r_joint_z_offset="${arm_left_joint_5_r_z_offset}"
+                 joint_5_r_joint_a_offset="${arm_left_joint_5_r_a_offset}"
+                 joint_5_r_joint_b_offset="${arm_left_joint_5_r_b_offset}"
+                 joint_5_r_joint_c_offset="${arm_left_joint_5_r_c_offset}"
+                 joint_6_b_joint_x_offset="${arm_left_joint_6_b_x_offset}"
+                 joint_6_b_joint_y_offset="${arm_left_joint_6_b_y_offset}"
+                 joint_6_b_joint_z_offset="${arm_left_joint_6_b_z_offset}"
+                 joint_6_b_joint_a_offset="${arm_left_joint_6_b_a_offset}"
+                 joint_6_b_joint_b_offset="${arm_left_joint_6_b_b_offset}"
+                 joint_6_b_joint_c_offset="${arm_left_joint_6_b_c_offset}"
+                 joint_7_t_joint_x_offset="${arm_left_joint_7_t_x_offset}"
+                 joint_7_t_joint_y_offset="${arm_left_joint_7_t_y_offset}"
+                 joint_7_t_joint_z_offset="${arm_left_joint_7_t_z_offset}"
+                 joint_7_t_joint_a_offset="${arm_left_joint_7_t_a_offset}"
+                 joint_7_t_joint_b_offset="${arm_left_joint_7_t_b_offset}"
+                 joint_7_t_joint_c_offset="${arm_left_joint_7_t_c_offset}"
                  >
                 <origin xyz="0.09996 0.0275 0.32214" rpy="1.57 0 0" />
             </xacro:motoman_arm>
-
-            <xacro:motoman_arm name="${prefix}arm_right" prefix="${prefix}arm_right_" parent="${prefix}torso_link_b1" reflect="-1"
+            <joint name="${prefix}arm_right_joint_1_s_joint_offset" type="fixed">
+                <origin xyz="${arm_right_joint_1_s_x_offset} ${arm_right_joint_1_s_y_offset} ${arm_right_joint_1_s_z_offset}"
+                rpy="${arm_right_joint_1_s_a_offset} ${arm_right_joint_1_s_b_offset} ${arm_right_joint_1_s_c_offset}"/>
+                <parent link="${prefix}torso_link_b1"/>
+                <child link="${prefix}arm_right_joint_1_s_link_offset"/>
+            </joint>
+            
+            <link name="${prefix}arm_right_joint_1_s_link_offset">
+            <inertial>
+              <mass value="1" />
+              <inertia ixx="1.0" ixy="0.0" ixz="0.0"
+                       iyy="1.0" iyz="0.0"
+                       izz="1.0" />
+            </inertial>
+            </link>
+            <xacro:motoman_arm name="${prefix}arm_right" prefix="${prefix}arm_right_" parent="${prefix}arm_right_joint_1_s_link_offset" reflect="-1"
                 joint_limited="true"
                 link_1_s_lower_limit="${-pi}"  link_1_s_upper_limit="${pi}"
                 link_2_l_lower_limit="${-pi}"  link_2_l_upper_limit="${pi}"
@@ -28,13 +110,56 @@
                 link_5_r_lower_limit="${-pi}"  link_5_r_upper_limit="${pi}"
                 link_6_b_lower_limit="${-pi}"  link_6_b_upper_limit="${pi}"
                 link_7_t_lower_limit="${-pi}"  link_7_t_upper_limit="${pi}"
+                joint_1_s_joint_offset="${arm_right_joint_1_s_offset}"
+                joint_2_l_joint_offset="${arm_right_joint_2_l_offset}"
+                joint_3_e_joint_offset="${arm_right_joint_3_e_offset}"
+                joint_4_u_joint_offset="${arm_right_joint_4_u_offset}"
+                joint_5_r_joint_offset="${arm_right_joint_5_r_offset}"
+                joint_6_b_joint_offset="${arm_right_joint_6_b_offset}"
+                joint_7_t_joint_offset="${arm_right_joint_7_t_offset}"
+                joint_2_l_joint_x_offset="${arm_right_joint_2_l_x_offset}"
+                joint_2_l_joint_y_offset="${arm_right_joint_2_l_y_offset}"
+                joint_2_l_joint_z_offset="${arm_right_joint_2_l_z_offset}"
+                joint_2_l_joint_a_offset="${arm_right_joint_2_l_a_offset}"
+                joint_2_l_joint_b_offset="${arm_right_joint_2_l_b_offset}"
+                joint_2_l_joint_c_offset="${arm_right_joint_2_l_c_offset}"
+                joint_3_e_joint_x_offset="${arm_right_joint_3_e_x_offset}"
+                joint_3_e_joint_y_offset="${arm_right_joint_3_e_y_offset}"
+                joint_3_e_joint_z_offset="${arm_right_joint_3_e_z_offset}"
+                joint_3_e_joint_a_offset="${arm_right_joint_3_e_a_offset}"
+                joint_3_e_joint_b_offset="${arm_right_joint_3_e_b_offset}"
+                joint_3_e_joint_c_offset="${arm_right_joint_3_e_c_offset}"
+                joint_4_u_joint_x_offset="${arm_right_joint_4_u_x_offset}"
+                joint_4_u_joint_y_offset="${arm_right_joint_4_u_y_offset}"
+                joint_4_u_joint_z_offset="${arm_right_joint_4_u_z_offset}"
+                joint_4_u_joint_a_offset="${arm_right_joint_4_u_a_offset}"
+                joint_4_u_joint_b_offset="${arm_right_joint_4_u_b_offset}"
+                joint_4_u_joint_c_offset="${arm_right_joint_4_u_c_offset}"
+                joint_5_r_joint_x_offset="${arm_right_joint_5_r_x_offset}"
+                joint_5_r_joint_y_offset="${arm_right_joint_5_r_y_offset}"
+                joint_5_r_joint_z_offset="${arm_right_joint_5_r_z_offset}"
+                joint_5_r_joint_a_offset="${arm_right_joint_5_r_a_offset}"
+                joint_5_r_joint_b_offset="${arm_right_joint_5_r_b_offset}"
+                joint_5_r_joint_c_offset="${arm_right_joint_5_r_c_offset}"
+                joint_6_b_joint_x_offset="${arm_right_joint_6_b_x_offset}"
+                joint_6_b_joint_y_offset="${arm_right_joint_6_b_y_offset}"
+                joint_6_b_joint_z_offset="${arm_right_joint_6_b_z_offset}"
+                joint_6_b_joint_a_offset="${arm_right_joint_6_b_a_offset}"
+                joint_6_b_joint_b_offset="${arm_right_joint_6_b_b_offset}"
+                joint_6_b_joint_c_offset="${arm_right_joint_6_b_c_offset}"
+                joint_7_t_joint_x_offset="${arm_right_joint_7_t_x_offset}"
+                joint_7_t_joint_y_offset="${arm_right_joint_7_t_y_offset}"
+                joint_7_t_joint_z_offset="${arm_right_joint_7_t_z_offset}"
+                joint_7_t_joint_a_offset="${arm_right_joint_7_t_a_offset}"
+                joint_7_t_joint_b_offset="${arm_right_joint_7_t_b_offset}"
+                joint_7_t_joint_c_offset="${arm_right_joint_7_t_c_offset}"
                 >
                 <origin xyz="0.09996 -0.0275 0.32214" rpy="1.57 0 0" />
             </xacro:motoman_arm>
         </xacro:macro>
 
-        <xacro:macro name="sda10f">
+        <!-- <xacro:macro name="sda10f">
             <xacro:motoman_sda10f prefix=""/>
-        </xacro:macro>
+        </xacro:macro> -->
 
 </robot>
